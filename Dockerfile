@@ -5,8 +5,11 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-COPY . .
+COPY package*.json ./
 
 RUN npm install --production
+
+COPY . .
+RUN npm build
 EXPOSE 3000
 CMD ["npm", "start"]
